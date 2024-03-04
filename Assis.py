@@ -47,6 +47,21 @@ def speechrecognition():
 
 
 ScriptDir = pathlib.Path().absolute()
+
+url = "https://flowgpt.com/chat"
+
+firefox_option = Options()
+user_agent = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.2 (KHTML, like Gecko) Chrome/22.0.1216.0 Safari/537.2"
+firefox_option.add_argument(f"user-agent={user_agent}")
+firefox_option.add_argument('--profile-directory=Default')
+firefox_option.add_argument("--headless=new")
+firefox_option.add_argument(f'user-data-dir={ScriptDir}\\firefoxdata')
+service = Service(FirefoxProfile().install())
+driver = webdriver.Chrome(service=service, options=firefox_option)
+driver.maximize_window()
+driver.get(url=url)
+# sleep(500)
+ChatNumber = 3
 def Checker():
     global ChatNumber
     for i in range(1, 1000):
